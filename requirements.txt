@@ -1,0 +1,9 @@
+reval
+pandas
+numpy
+flask
+matplotlib
+requests
+Jinja2
+openai
+python-dotenv
