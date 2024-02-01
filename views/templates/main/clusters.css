@@ -1,0 +1,46 @@
+.cluster-list {
+  padding: 0.3em;
+}
+
+.cluster-list-item {
+  list-style: none;
+  margin: 0.5em;
+}
+.summary-container{
+  display: flex;
+}
+#clusters-container {
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.cluster-details {
+  padding: 0.5em;
+  background-color: var(--alt-bg-color-1);
+  border-radius: 1em;
+  margin: 1em;
+  width: 100%;
+  color: var(--main-text-color);
+}
+summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--alt-bg-color-2);
+  border-radius: 25px;
+  padding: 1rem;
+}
+details[open] {
+  height: 10em;
+  overflow-y: scroll;
+}
+
+summary > button {
+  margin-left: 1em;
+}
+
+details[open] summary {
+  right: 0%;
+}

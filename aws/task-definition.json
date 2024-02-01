@@ -1,0 +1,31 @@
+{
+  "family": "sample-fargate",
+  "networkMode": "host",
+  "containerDefinitions": [
+      {
+          "name": "spotify-liked-songs-clustering-cs50-container",
+          "image": "186912366203.dkr.ecr.sa-east-1.amazonaws.com/spotify-liked-songs-clustering-cs50:latest",
+          "portMappings": [
+              {
+                  "containerPort": 8080,
+                  "hostPort": 80,
+                  "protocol": "tcp"
+              }
+          ],
+          "essential": true,
+          "entryPoint": [
+              "sh",
+  "-c"
+          ],
+          "command": [
+              ""
+          ]
+      }
+  ],
+  "requiresCompatibilities": [
+      "FARGATE"
+  ],
+  "ExecutionRoleArn": "AWSServiceRoleForECS",
+  "cpu": "256",
+  "memory": "512"
+}

@@ -5,6 +5,8 @@ const createElement = (type, text, className, child) => {
   element.className = className
   return element
 }
+
+
 const BASE_URL = `http://localhost:8080`
 const createCreatePlaylistButton = (songIds, playlistName) => {
   const btn = createElement('button', 'Create this', 'playlist-btn');
@@ -27,17 +29,17 @@ const createCreatePlaylistButton = (songIds, playlistName) => {
       raiseError(error)
     } finally {
       loadingEnd()
-    }    
+    }
   })
   return btn
 }
 const createClustersElements = (clustersData) => {
   clusterContainer.innerHTML = ""
   clustersData.forEach((cluster, index) => {
-    const summary = createElement('summary', `Cluster ${index + 1}: ${cluster.name}`, 'cluster-summary')
+    const summary = createElement('summary', `${cluster.name}`, 'cluster-summary')
     const details = createElement('details', null, 'cluster-details')
+    const summaryContainer = createElement('div', null, 'summary-container')
     if(index === 0) details.open = true
-    details.appendChild(summary)
     const list = createElement('ul', null, 'cluster-list')
     const songIds = [];
     cluster.musics.forEach((item) => {
@@ -45,7 +47,8 @@ const createClustersElements = (clustersData) => {
       list.appendChild(listItem)
       songIds.push(item.id)
     })
-    details.appendChild(createCreatePlaylistButton(songIds, cluster.name))
+    summary.appendChild(createCreatePlaylistButton(songIds, cluster.name))
+    details.appendChild(summary)
     details.appendChild(list)
     clusterContainer.appendChild(details)
   });

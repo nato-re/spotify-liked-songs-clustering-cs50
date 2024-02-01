@@ -1,4 +1,6 @@
 .env
+appspec.yml
+cloudformation/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

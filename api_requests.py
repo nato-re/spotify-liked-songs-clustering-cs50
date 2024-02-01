@@ -97,14 +97,17 @@ def get_artists(ids: set):
                 artists[artist['id']] = artist
     return artists
 
+
 def add_playlists_names(data):
     playlist_quantity = len(data)
-    prompt = f"Create {playlist_quantity} unique playlist names based in the following spotify metadata, in JSON format, on the next lines, give only the playlists names separated by line breaks in your response\n"
+    prompt = f"Create {playlist_quantity} unique playlist names based in the following spotify metadata, in JSON format, on the next lines, give only the playlists names separated by line breaks in your response, do not number the items\n"
     for cluster in data:
         prompt += json.dumps(cluster["center"])
-    messages = [{ "content": prompt , "role": "user"}]
-    
-    response = client.chat.completions.create(messages=messages, model="gpt-3.5-turbo-1106") # get_data.get_fake_chat_completion(messages=messages, model="gpt-3.5-turbo-1106") #
+    messages = [{"content": prompt, "role": "user"}]
+
+    # get_data.get_fake_chat_completion(messages=messages, model="gpt-3.5-turbo-1106") #
+    response = client.chat.completions.create(
+        messages=messages, model="gpt-3.5-turbo-1106")
     print(response.choices)
     print(response.choices[0])
     choices = response.choices[0].message.content.split("\n")
@@ -119,25 +122,29 @@ def add_playlists_names(data):
 
     return playlists
 
+
 def create_playlist(body):
     song_ids = body.get('song_ids')
     playlist_name = body.get('playlist_name')
     user = session.get("https://api.spotify.com/v1/me", headers=req_headers)
     user_id = user.json()['id']
     response = session.post(
-        f'https://api.spotify.com/v1/users/{user_id}/playlists', headers=req_headers, 
-        json={ 
-              "name": playlist_name, 
-                "description": "My description", 
-                "public": False
-            })
+        f'https://api.spotify.com/v1/users/{user_id}/playlists', headers=req_headers,
+        json={
+            "name": playlist_name,
+            "description": "My description",
+            "public": False
+        })
     body = response.json()
     print(body)
     playlist_id = body['id']
-    #max 100
+    # max 100
     song_ids_to_uri = [f"spotify:track:{id}" for id in song_ids]
     while len(song_ids_to_uri) > 0:
         uris = song_ids_to_uri[:100]
-        session.post(f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks', data={"uris": uris})
+        test = session.post(
+            f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks',
+            json={"uris": uris},
+            headers=req_headers)
         song_ids_to_uri = song_ids_to_uri[100:]
     return playlist_id

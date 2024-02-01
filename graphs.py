@@ -14,6 +14,7 @@ from sklearn.preprocessing import StandardScaler
 import data.get_data as get_data
 import model
 
+
 def draw(data, db, picture):
     # TODO epsilon relativa a distância vetorial máxima entre prontos normalizados entre 0 e 1
     # TODO nomalizar pontos (MinMax scaler)
@@ -67,7 +68,6 @@ def draw_k_means(data, db, picture):
     # Create a new DataFrame with the reduced dimensions
     df_pca = pd.DataFrame(data=X_std, columns=['PC1', 'PC2'])
     picture.scatter(df_pca['PC1'], df_pca['PC2'], c=data_color_mapper)
-
 
 
 def create_figure(data, db, callback, title):

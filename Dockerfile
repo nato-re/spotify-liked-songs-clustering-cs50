@@ -5,6 +5,6 @@ RUN python -m pip install -r requirements.txt
 WORKDIR /app
 COPY . /app
 
-EXPOSE 8080
+EXPOSE 80
 
 ENTRYPOINT [ "python app.py" ]
