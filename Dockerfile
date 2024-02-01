@@ -1,9 +1,9 @@
-FROM python:3.13.0a2-alpine3.19
-
-RUN python -m pip install -r requirements.txt
+FROM python
 
 WORKDIR /app
 COPY . /app
+
+RUN python -m pip install -r requirements.txt
 
 EXPOSE 80
 
