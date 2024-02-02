@@ -9,12 +9,10 @@ on:
 env:
   applicationfolder: ./
   AWS_REGION: sa-east-1
-  #S3BUCKET: spotify-liekd-songs-cluster-webappdeploymentbucket-uigxxoklltki
-  ECR_REPOSITORY: 186912366203.dkr.ecr.sa-east-1.amazonaws.com/spotify-liked-songs-clustering-cs50           # set this to your Amazon ECR repository name
-  ECS_SERVICE: spotify-liked-songs-clustering-cs50-ecs-service
-                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: spotify-liked-songs-clustering-cs50-ecs-service                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: ./aws/task-definition.json # set this to the path to your Amazon ECS task definition e.g. .aws/task-definition.json
+  ECR_REPOSITORY: 186912366203.dkr.ecr.sa-east-1.amazonaws.com/my-first-ecr-repo           # set this to your Amazon ECR repository name
+  ECS_SERVICE: my-first-service
+  ECS_CLUSTER: my-cluster                 # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: my-first-task # set this to the path to your Amazon ECS task definition e.g. .aws/task-definition.json
   CONTAINER_NAME: spotify-liked-songs-clustering-docker-image           # set this
 
 jobs:
