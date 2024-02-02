@@ -1,7 +1,7 @@
 FROM python
 
 WORKDIR /app
-COPY . /app
+COPY requirements.txt app.py data/ views/ api_requests.py graphs.py /app
 
 RUN python -m pip install -r requirements.txt
 
