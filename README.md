@@ -1,4 +1,4 @@
-# Project Title: K-means Cluster Playlist Maker
+# K-means Cluster Playlist Maker
 
 ## Video URL
 [Link to Video](https://youtu.be/jSWJxH-pe7s)
